@@ -14,7 +14,25 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+
 #include "stack.h"
+
+void
+#if STACK_CHAR
+cstack_init(struct cstack *stack)
+#elif STACK_INT
+istack_init(struct istack *stack)
+#elif STACK_FLOAT
+fstack_init(struct fstack *stack)
+#elif STACK_DOUBLE
+dstack_init(struct dstack *stack)
+#endif
+{
+	memset(stack, 0, sizeof *stack);
+}
 
 bool
 #if STACK_CHAR
@@ -49,7 +67,10 @@ dstack_pop(struct dstack *stack, double *item)
 	if (stack->pointer == 0)
 		return false;
 
-	*item = stack->stack[--(stack->pointer)];
+	stack->pointer--;
+
+	if (item != NULL)
+		*item = stack->stack[stack->pointer];
 
 	return true;
 }

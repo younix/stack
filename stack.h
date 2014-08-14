@@ -25,15 +25,19 @@ struct istack { size_t pointer; int stack[BUFSIZ]; };
 struct fstack { size_t pointer; float stack[BUFSIZ]; };
 struct dstack { size_t pointer; double stack[BUFSIZ]; };
 
+void cstack_init(struct cstack *stack);
 bool cstack_push(struct cstack *stack, char item);
 bool cstack_pop(struct cstack *stack, char *item);
 
+void istack_init(struct istack *stack);
 bool istack_push(struct istack *stack, int item);
 bool istack_pop(struct istack *stack, int *item);
 
+void fstack_init(struct fstack *stack);
 bool fstack_push(struct fstack *stack, float item);
 bool fstack_pop(struct fstack *stack, float *item);
 
+void dstack_init(struct dstack *stack);
 bool dstack_push(struct dstack *stack, double item);
 bool dstack_pop(struct dstack *stack, double *item);
 

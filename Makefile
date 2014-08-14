@@ -11,20 +11,20 @@ test: test.o libstack.a
 libstack.a: cstack.o istack.o fstack.o dstack.o
 	ar rcs $@ cstack.o istack.o fstack.o dstack.o
 
-cstack.o: stack.c
+cstack.o: stack.c stack.h
 	$(CC) $(CFLAGS) -c -o $@ -DSTACK_CHAR stack.c
 
-istack.o: stack.c
+istack.o: stack.c stack.h
 	$(CC) $(CFLAGS) -c -o $@ -DSTACK_INT stack.c
 
-fstack.o: stack.c
+fstack.o: stack.c stack.h
 	$(CC) $(CFLAGS) -c -o $@ -DSTACK_FLOAT stack.c
 
-dstack.o: stack.c
+dstack.o: stack.c stack.h
 	$(CC) $(CFLAGS) -c -o $@ -DSTACK_DOUBLE stack.c
 
 .c.o:
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f *.o *.core test
+	rm -f *.o *.a *.core test
