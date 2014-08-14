@@ -4,9 +4,12 @@ CFLAGS := -std=c99 -pedantic -Wall -Wextra -g
 .PHONY: all clean
 .SUFFIXES: .c .o
 
-all: test
-test: test.o cstack.o
-	$(CC) -o $@ test.o cstack.o
+all: libstack.a test
+test: test.o libstack.a
+	$(CC) -static -o $@ test.o -L. -lstack
+
+libstack.a: cstack.o istack.o fstack.o dstack.o
+	ar rcs $@ cstack.o istack.o fstack.o dstack.o
 
 cstack.o: stack.c
 	$(CC) $(CFLAGS) -c -o $@ -DSTACK_CHAR stack.c
