@@ -24,4 +24,4 @@ dstack.o: stack.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f *.o test
+	rm -f *.o *.core test
