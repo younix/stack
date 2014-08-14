@@ -20,11 +20,11 @@ bool
 #if STACK_CHAR
 cstack_push(struct cstack *stack, char item)
 #elif STACK_INT
-istack_push(struct cstack *stack, int item)
+istack_push(struct istack *stack, int item)
 #elif STACK_FLOAT
-fstack_push(struct cstack *stack, float item)
+fstack_push(struct fstack *stack, float item)
 #elif STACK_DOUBLE
-dstack_push(struct cstack *stack, double item)
+dstack_push(struct dstack *stack, double item)
 #endif
 {
 	if (stack->pointer >= BUFSIZ)
@@ -39,11 +39,11 @@ bool
 #if STACK_CHAR
 cstack_pop(struct cstack *stack, char *item)
 #elif STACK_INT
-istack_pop(struct istack *stack, char *item)
+istack_pop(struct istack *stack, int *item)
 #elif STACK_FLOAT
-fstack_pop(struct fstack *stack, char *item)
+fstack_pop(struct fstack *stack, float *item)
 #elif STACK_DOUBLE
-dstack_pop(struct dstack *stack, char *item)
+dstack_pop(struct dstack *stack, double *item)
 #endif
 {
 	if (stack->pointer == 0)
